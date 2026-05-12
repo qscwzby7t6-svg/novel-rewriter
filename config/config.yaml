@@ -1,0 +1,115 @@
+# ============================================
+# 仿写百万字小说软件 - 主配置文件
+# ============================================
+
+# LLM 配置
+llm:
+  # 提供商: deepseek / openai / local
+  provider: "deepseek"
+  # API密钥（请替换为真实密钥）
+  api_key: ""
+  # API基础URL
+  base_url: "https://api.deepseek.com/v1"
+  # 模型名称
+  model: "deepseek-chat"
+  # 备用低成本提供商（超出预算时自动切换）
+  fallback_provider: "deepseek"
+  # 备用模型
+  fallback_model: "deepseek-chat"
+  # 备用API密钥
+  fallback_api_key: ""
+  # 备用API基础URL
+  fallback_base_url: "https://api.deepseek.com/v1"
+  # 单次调用最大token数
+  max_tokens_per_call: 4000
+  # 生成温度
+  temperature: 0.8
+  # Top-P采样
+  top_p: 0.9
+  # 重试次数
+  max_retries: 3
+  # 重试间隔（秒）
+  retry_delay: 2
+  # 请求超时（秒）
+  timeout: 60
+  # 是否启用流式输出
+  stream: false
+
+  # 成本控制
+  cost:
+    # 每章预算上限（元）
+    chapter_budget: 0.5
+    # 总预算上限（元）
+    total_budget: 100.0
+    # 主模型每千token价格（元）
+    primary_price_per_1k: 0.002
+    # 备用模型每千token价格（元）
+    fallback_price_per_1k: 0.001
+
+# 小说配置
+novel:
+  # 默认类型
+  default_genre: "玄幻"
+  # 默认每章目标字数
+  default_chapter_words: 3000
+  # 默认总章数
+  default_total_chapters: 300
+  # 支持的类型列表
+  genres:
+    - "玄幻"
+    - "仙侠"
+    - "都市"
+    - "科幻"
+    - "历史"
+    - "游戏"
+    - "悬疑"
+    - "言情"
+
+# 世界观构建配置
+world_building:
+  # 世界观详细程度: simple / moderate / detailed
+  detail_level: "moderate"
+  # 是否自动生成地图描述
+  auto_generate_map: true
+  # 是否自动生成力量体系
+  auto_generate_power_system: true
+
+# 写作配置
+writing:
+  # 段落级生成开关
+  paragraph_level: true
+  # 去AI化处理开关
+  deai_enabled: true
+  # 版权检测开关
+  copyright_check: true
+  # 质量检查开关
+  quality_check: true
+  # 质量检查阈值
+  quality_threshold: 0.7
+  # 上下文窗口大小（章节数）
+  context_window: 5
+
+# 输出配置
+output:
+  # 输出路径
+  path: "./data/output"
+  # 输出格式: txt / json / docx
+  format: "txt"
+  # 是否按章节分文件
+  split_by_chapter: true
+
+# 服务器配置
+server:
+  # 监听地址
+  host: "127.0.0.1"
+  # 监听端口
+  port: 8000
+  # 是否开启调试模式
+  debug: false
+
+# 日志配置
+logging:
+  # 日志级别: DEBUG / INFO / WARNING / ERROR
+  level: "INFO"
+  # 日志文件路径
+  file: "./data/output/novel-rewriter.log"
